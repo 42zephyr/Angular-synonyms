@@ -1,0 +1,11 @@
+<nav>
+    <a routerLink="/syns/ua"> ua </a> /
+    <a routerLink="/syns/en"> en </a> /
+    <a routerLink="/syns/es"> es </a>
+</nav>
+<textarea id="mainArea"   required [ngClass]="{'blu-color':  20> maintext.length,'red-color': maintext.length >20}" [ngModel]="maintext" (ngModelChange)="showcase()"></textarea>
+@if(maintext!=defaultText){
+   <div id="showcase"> <button (click)="copy()">{{ 'copy' | transloco }}</button></div>
+    <div class="showcase">
+    <h4 id="showcase"  >{{ 'wordCounter' | transloco }} {{size}} {{'letterCounter'| transloco}} {{length}}</h4></div>
+    <child-comp [visibility]="number" [size]="size" [length]="length"   [(mainText)]="maintext" [lang]="lang"> </child-comp>}

@@ -1,0 +1,10 @@
+{
+    "lan":"en",
+    "defaulttext":"Enter text",
+    "wordCounter":"Number of words",
+    "letterCounter":"Number of letters",
+    "copy":"Copy",
+    "findSyns":"Find synonyms",
+    "highlightAll":"Replacing mode=Highlight all",
+    "replaceAll":"Replacing mode=Replace all"
+}

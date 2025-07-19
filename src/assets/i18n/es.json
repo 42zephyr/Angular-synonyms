@@ -1,0 +1,11 @@
+{
+"lan":"es",
+"defaulttext":"Introducir texto",
+"wordCounter":"Número de palabras",
+"letterCounter":"Número de letras",
+"copy":"Copiar",
+"findSyns":"Buscar sinónimos",
+"highlightAll": "Modo de reemplazo=Resaltar todo",
+"replaceAll":"Modo de reemplazo=Reemplazar todo"
+}
+

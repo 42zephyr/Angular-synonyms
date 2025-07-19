@@ -1,6 +1,5 @@
-<button (click)="copy()">Copy</button>
-<button (click)="find()">Find synonyms</button>
-<button (click)="changeMode()">@if(mode==true){Replacing mode=highligth all}@else{Replacing mode=replace all}</button>
+<button (click)="find()">{{'findSyns'|transloco}}</button>
+<button (click)="changeMode()">@if(mode==true){{{'highlightAll'|transloco}}}@else{{{'replaceAll'|transloco}}}</button>
 @if(syns.length!=0){
     <ul>
         @for (syn of syns;track syn.word){
@@ -10,7 +9,7 @@
 }
 <ul >
     @for (letter of mainText;track $index) {
-        <li [ngStyle]="{opacity: visibility}"><h6 >{{$index + " " + letter +" " +$count}}</h6></li>
+        <li [ngStyle]="{opacity: visibility}"><h6 >{{$index + " " + letter}}</h6></li>
     }
 </ul>
 {{visibility}}

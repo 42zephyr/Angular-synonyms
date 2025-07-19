@@ -6,11 +6,12 @@ import {DataService} from "./data.service";
 import {HttpService} from "./http.service";
 import {User} from "./user";
 import {Synonym} from "./synonym";
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
 @Component({
     selector: 'child-comp',
     standalone: true,
-    imports:[FormsModule,CommonModule],
+    imports:[FormsModule,CommonModule,TranslocoModule],
     providers:[HttpService],
     templateUrl: './child.component.html'
 })
@@ -21,6 +22,7 @@ export class ChildComponent implements OnInit{
     @Input() mainText: string = '';
     @Input() selectionStart:string='';
     @Input() selectionEnd:string='';
+    @Input() lang:string='';
     @Output() mainTextChange = new EventEmitter<string>();
     user: User | undefined;
     mode:boolean=true;
@@ -32,16 +34,15 @@ export class ChildComponent implements OnInit{
         this.mainTextChange.emit(newVal);
     }
     dataText:string;
-    constructor(private dataService: DataService,private httpService: HttpService) {
+    constructor(private dataService: DataService,private httpService: HttpService,private translocoService: TranslocoService) {
         this.dataText = this.dataService.getData().join(", ");
+
     }
-    copy(){
-        navigator.clipboard.writeText(this.mainText);
-    }
+
     find(){
-        let selection=window.getSelection();
+        const selection=window.getSelection();
         if(selection){
-        let text = selection.toString();
+        const text = selection.toString();
         console.log(typeof(text))
         this.httpService.getSyns(text).subscribe({next: (data: any) => {this.syns=data; console.log(this.user); console.log(this.syns,"syns");}}); 
         this.word=selection.toString()
@@ -50,7 +51,8 @@ export class ChildComponent implements OnInit{
         }
     }
     ngOnInit(){
-           
+        this.translocoService.setActiveLang(this.lang);
+
         //this.httpService.getData().subscribe({next:(data:any) => this.user=new User(data.name, data.age)});
     }
     changeMode(){
@@ -58,19 +60,19 @@ export class ChildComponent implements OnInit{
     }
     replace(syn:string){
       if(this.mode){
-        this.replace1(syn)
+        this.replaceMode1(syn)
       }
       else{
-        this.replace2(syn)
+        this.replaceMode2(syn)
       }
     }
-    replace1(syn:string){
-        let textarea = document.getElementById("mainArea") as HTMLTextAreaElement | null;
+    replaceMode1(syn:string){
+        const textarea = document.getElementById("mainArea") as HTMLTextAreaElement | null;
         console.log(textarea)
         if (textarea) {
             if(this.words.indexOf(textarea.value.substring(textarea.selectionStart,textarea.selectionEnd))!=-1){
-                let start = textarea.selectionStart;
-                let end = textarea.selectionEnd;
+                const start = textarea.selectionStart;
+                const end = textarea.selectionEnd;
                 console.log(textarea.selectionStart,textarea.selectionEnd)
                 this.mainText =textarea.value=textarea.value.substring(0, start) +syn + textarea.value.substring(end);
                 console.log(this.mainText,textarea.value)
@@ -78,12 +80,12 @@ export class ChildComponent implements OnInit{
               }
         } 
     }
-    replace2(syn:string){
+    replaceMode2(syn:string){
                 //console.log(syn,this.word)
                 //console.log(this.mainText)
                 //console.log(this.mainText.indexOf(this.word))
         console.log(this.words)
-        for(let used of this.words){
+        for(const used of this.words){
             console.log(used,this.mainText.indexOf(used),this.mainText.indexOf(used)!==-1)
             console.log(used,syn)
             this.mainText=this.mainText.replaceAll(used,syn)

@@ -1,9 +1,0 @@
-<textarea id="mainArea"   required [ngClass]="{'blu-color':  20> maintext.length,'red-color': maintext.length >20}" [ngModel]="maintext" (ngModelChange)="showcase()"></textarea>
-<button (click)="showcase()">Press</button>
-@if(maintext!="Введіть текст"){
-    <button (click)="showcase()">Press</button>
-    <div class="showcase">
-    <h4 id="showcase"  >{{maintext}}</h4>
-    <h4 id="showcase"  >{{maintext}}</h4>
-    <h4 id="showcase"  >Кількість слів {{size}} Кількіцсть символів {{length}}</h4></div>
-    <child-comp [visibility]="number" [size]="size" [length]="length"   [(mainText)]="maintext" > </child-comp>}

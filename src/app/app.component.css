@@ -9,12 +9,15 @@ textarea{
     color:red;
 }
 :host{
-    background-color: blueviolet;
-    padding-top:70px ;
+    /*background-color: blueviolet;*/
+    opacity: 0.7;
 }
-.ng-untouched{
+textarea.ng-untouched{
     opacity: 0.5;
 }
+textarea{
+    background-color: darkgoldenrod;
+}
 .showcase{
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }

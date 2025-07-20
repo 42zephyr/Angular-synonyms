@@ -6,6 +6,7 @@ import {DataService} from "./data.service";
 import {HttpService} from "./http.service";
 import {User} from "./user";
 import {Synonym} from "./synonym";
+
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
 @Component({
@@ -44,7 +45,7 @@ export class ChildComponent implements OnInit{
         if(selection){
         const text = selection.toString();
         console.log(typeof(text))
-        this.httpService.getSyns(text).subscribe({next: (data: any) => {this.syns=data; console.log(this.user); console.log(this.syns,"syns");}}); 
+        this.httpService.getSyns(text,this.lang).subscribe({next: (data: any) => {this.syns=data; console.log(this.user); console.log(this.syns,"syns");}}); 
         this.word=selection.toString()
         console.log(this.word)
         this.words=[this.word]
